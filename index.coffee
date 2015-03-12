@@ -1,10 +1,11 @@
-handler = (request, response) ->
-  response.end("ohai")
+express = require('express')
+app     = express()
+server  = require('http').Server(app)
+io      = require('socket.io')(server)
 
-app = require('http').createServer(handler)
-io  = require('socket.io')(app)
+server.listen(process.env.PORT || 3030)
 
-app.listen(process.env.PORT || 3030)
+app.use(express.static(__dirname + '/www'))
 
 io.on 'connection', (socket) ->
   socket.emit 'products', []
