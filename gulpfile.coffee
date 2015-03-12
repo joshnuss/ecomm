@@ -11,7 +11,7 @@ addsrc     = require('gulp-add-src')
 
 paths =
   sass:
-    source: ["sass/**/*.sass"]
+    source: "sass"
     dest: './www/css'
   coffee:
     source: ["scripts/**/*.coffee"]
@@ -50,8 +50,7 @@ gulp.task "coffee", (done) ->
       .pipe(notify(message: ".js files updated"))
 
 gulp.task "sass", (done) ->
-  gulp.src(paths.sass.source)
-      .pipe(sass())
+  sass(paths.sass.source)
       .on("error", notify.onError("Error: <%= error.message %>"))
       .pipe(gulp.dest(paths.sass.dest))
       .pipe(minifyCss(keepSpecialComments: 0))
