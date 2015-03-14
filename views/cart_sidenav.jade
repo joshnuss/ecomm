@@ -1,0 +1,14 @@
+div(layout="column" ng-controller='CartController')
+  md-toolbar
+    .md-toolbar-tools
+      span Cart
+  
+  md-content.md-padding
+    md-list
+      md-item(ng-repeat='item in items')
+        md-item-content
+          .md-tile-content
+            h3 {{item.name}}
+          
+          .md-tile-right
+            {{item.price | currency}}
