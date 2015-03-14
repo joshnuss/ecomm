@@ -1,1 +1,1 @@
-angular.module('ecomm', [])
+angular.module('ecomm', ['ngMaterial'])
