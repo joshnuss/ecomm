@@ -13,6 +13,9 @@ paths =
   sass:
     source: "sass"
     dest: './www/css'
+    includes: [
+      "bower_components/angular-material/angular-material.css"
+    ]
   coffee:
     source: ["scripts/**/*.coffee"]
     target: "app.js"
@@ -52,6 +55,7 @@ gulp.task "coffee", (done) ->
 gulp.task "sass", (done) ->
   sass(paths.sass.source)
       .on("error", notify.onError("Error: <%= error.message %>"))
+      .pipe(addsrc.prepend(paths.sass.includes))
       .pipe(gulp.dest(paths.sass.dest))
       .pipe(minifyCss(keepSpecialComments: 0))
       .pipe(rename(extname: ".min.css"))
